@@ -1,0 +1,12 @@
+ll expb(ll a,ll b, ll mod){
+    ll base = a%mod;
+    ll res = 1;
+    while(b!=0){
+        if(b%2 == 1){
+            res = (res*base)%mod;
+        }
+        base = (base*base)%mod;
+        b = b/2;
+    }
+    return res;
+}
