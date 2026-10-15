@@ -1,0 +1,14 @@
+enum Color { BLANCO, GRIS, NEGRO }; // no visitado / en proceso / terminado
+vector<Color> color(n, BLANCO);
+void dfs(int u) {
+  color[u] = GRIS; // ENTRO a u: lo pinto gris
+  for (int v : lst_ady[u]) {
+    if (color[v] == BLANCO) dfs(v); // arista de árbol -> bajo por ella
+    else if (color[v] == GRIS) ; // arista hacia atrás -> spoiler: ciclo
+    else /* color[v] == NEGRO */ ; // ya cerramos ese vértice
+  }
+  color[u] = NEGRO; // SALGO de u: lo pinto negro
+}
+// para recorrer TODO el grafo (puede ser disconexo):
+for (int u = 0; u < n; ++u)
+  if (color[u] == BLANCO) dfs(u);
