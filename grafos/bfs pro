@@ -1,0 +1,18 @@
+enum Color { BLANCO, GRIS, NEGRO }; // no descubierto / en la cola / procesado
+vector<Color> color(n, BLANCO);
+
+void bfs(int inicio) {
+  queue<int> cola;
+  color[inicio] = GRIS; // se pinta gris al encolar
+  cola.push(inicio);
+  while (!cola.empty()) {
+    int u = cola.front(); cola.pop();
+    for (int v : lst_ady[u]) {
+      if (color[v] == BLANCO) { // aún no lo descubrimos
+        color[v] = GRIS; // pasa a la frontera
+        cola.push(v);
+        }
+    }
+  color[u] = NEGRO; // ya miré todos sus vecinos
+  }
+}
